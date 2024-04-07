@@ -24,7 +24,7 @@ Kinesis is a managed service service which makes it easy to collect and analyze 
 
 ## Kinesis API
 
-- PutRecord API: requires a partition key which gets hashed.
+- PutRecord API: requires a partition key that gets hashed.
 - Partition key should be highly distributed (otherwise a shard can become overwhelmed)
 - PutRecord accepts batches, cost can be reduced
 - PutRecord throws ProvisionedThroughputExceeded in case of capacity is exceeded. Solution: exponential back-off, more shards, ensure that partition key is highly distributed
@@ -36,6 +36,18 @@ Kinesis is a managed service service which makes it easy to collect and analyze 
 - Progress checkpoint is written to DynamoDB
 - Records are read in order at the shard level
 
+## Kinesis Consumer types
+
+- Shared (Classic) fan-out Consumer-pull:
+  - limited throughput
+  - 2mb/s across all consumers
+  - Latency ~ 200ms
+  - Consumer poll the data from stream , using GETRecordAPI call.
+- Enhanced Fan-out Consumer-push:
+  - multiple consuming application
+  - 2mb/s per each consumer
+  - Kinesis push the data to the consumer using HTTP/2(subscribe to shared API)
+  - Latency ~ 70ms
 
 ## Security
 

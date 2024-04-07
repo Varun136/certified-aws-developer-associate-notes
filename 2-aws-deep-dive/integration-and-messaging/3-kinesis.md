@@ -1,10 +1,10 @@
 # Kinesis
 
-Kinesis is a managed service service which makes it easy to collect and analyze data and video streams in real time. It is considered a managed alternative for Apache Kafka.
+Kinesis is a managed service that makes it easy to collect and analyze data and video streams in real-time. It is considered a managed alternative for Apache Kafka.
 
 - Kinesis Streams: low latency streaming ingest at scale
 - Kinesis Analytics: real-time analytics on streams using SQL
-- Kinesis Firehose: load streams into S3, Redshift, Elastic etc.
+- Kinesis Firehose: load streams into S3, Redshift, opensearch etc.
 
 ## Overview
 
@@ -22,11 +22,23 @@ Kinesis is a managed service service which makes it easy to collect and analyze 
 - Billing is per shard
 - Records are ordered per shard
 
+## Kinesis shard operations
+
+- Shard splitting
+  - if a shard is overwhelmed with huge traffic (hot shard) it can be split into two shards
+  - once the data in the old shard has expired it will be deleted
+  - one shard can be split only into a maximum of 2.
+- Shard merging
+  -  if 2 shards have very little traffic (cold shard) they can be merged into one shard
+  -  only two shards can be merged into one shard
+  -  once the data of the old shard expires the old shards will be deleted.
+  -  Auto-scaling is not possible in Kinesis.
+
 ## Kinesis API
 
 - PutRecord API: requires a partition key that gets hashed.
 - Partition key should be highly distributed (otherwise a shard can become overwhelmed)
-- PutRecord accepts batches, cost can be reduced
+- PutRecord accepts batches, costs can be reduced
 - PutRecord throws ProvisionedThroughputExceeded in case of capacity is exceeded. Solution: exponential back-off, more shards, ensure that partition key is highly distributed
 
 ## Kinesis Client Library (KCL)
@@ -65,10 +77,12 @@ Kinesis is a managed service service which makes it easy to collect and analyze 
 
 ## Kinesis Firehose
 
-- Used for ETL, can load data into Redshift, S3, ElasticSearch etc.
+- Used for ETL, can load data into Redshift, S3, Amazonopensearch etc.
 - Fully managed, automatic scaling
 - Low latency (60 seconds)
 - Pay for the amount of data which goes through Firehose
+- No storage of data, therfore no replaying of data
+- Support automatic scaling
 
 ## SQS vs SNS vs Kinesis
 

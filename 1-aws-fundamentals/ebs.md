@@ -109,4 +109,29 @@ EBS Snapshots
 * Big Data / Data Warehouses / Log Processing : ST1 (HDD)
 * Lowest storage cost : SC1 (HDD)
 * NoSQL such as MongoDB, Cassandra or MSQL : IO1 (SSD)
-* Low latency applications : GP2 (SSD) 
+* Low latency applications : GP2 (SSD)
+
+#### AMI - Amazon Machine Image
+ * AMI are customization of EC2 instaces
+ * we can add our own software config, operating system and monitoring.
+ * AMI are built for specifi regions
+ * We can launch an EC2 instance from
+      * public AMI
+      * our own AMI
+      * AWS marketplace AMI
+#### AMI creation process
+ * Start an EC2 instance and customize it.
+ * Stop the instance for data integrity.
+ * Build an AMI , this include the EB snapshot.
+ * launch the instance from other AMIs.
+ * 
+#### EBS multi attach
+ * Only available to io1/io2.
+ * attach the same EBS to multple EC2 instance within the same AZ.
+ * can attach upto 16 EC2 instance at a time.
+
+#### EFS
+ * Manage Network File System (NFS) that can be mounted on many EC2 instances.
+ * EFS work on  EC2 instance in mulit-AZ
+ * highly available , high cost 3xGP2 price.
+ * only compatable with linux based AMI.

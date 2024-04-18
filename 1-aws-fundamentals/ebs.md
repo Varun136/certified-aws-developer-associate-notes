@@ -135,3 +135,9 @@ EBS Snapshots
  * EFS work on  EC2 instance in mulit-AZ
  * highly available , high cost 3xGP2 price.
  * only compatable with linux based AMI.
+ * Storage class
+      * EFS standard
+      * EFS IA : infrequently accessed.
+      * EFS multi AZ : best for prod
+      * EFS One Zone
+   

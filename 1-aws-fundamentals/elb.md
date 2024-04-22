@@ -1,4 +1,17 @@
-# ELB: Elastic Load Balancers
+# Scalability  and availability
+
+### Scalability
+* means application system can handle greater loads by adapting
+* Two types
+* Vertical scalability : Increasing the size of the server, limited by hardware , eg : RDS, Elasticache
+* Horizontal Scalability : Increasing the number of instances, distributed systems, eg : EC2
+
+### Availability 
+* Running the server in atleast 2 datacentres (AZs) to survive dataloss
+* Active : Horizontal scaling
+* Passive : RDS multi instance
+
+## ELB: Elastic Load Balancers
 
 Load balancers are servers that forward internet traffic to multiple servers (EC2 Instances) downstream
 
@@ -30,6 +43,10 @@ It costs less to setup your own load balancer, but it will be a lot more effort 
 * They enable the load balancer to know if instances it forwards traffic to are available to reply to requests
 * The health check is done on a port and a route (/health is common)
 * If the response is not 200 (OK), then the instance is unhealthy
+
+### Load balancer security
+![image](https://github.com/Varun136/certified-aws-developer-associate-notes/assets/56468790/32239ec0-81a4-4bc1-bbb0-49137d19f923)
+We can set the EC2 instance securyt group to allow only traffic from the load balancer
 
 #### Application Load Balancer (v2)
 * Application load balancers (Layer 7) allow to do:

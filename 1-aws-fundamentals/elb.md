@@ -49,11 +49,16 @@ It costs less to setup your own load balancer, but it will be a lot more effort 
 We can set the EC2 instance securyt group to allow only traffic from the load balancer
 
 #### Application Load Balancer (v2)
-* Application load balancers (Layer 7) allow to do:
+* Application load balancers is Layer 7(HTTP) allow to do:
   * Load balancing to multiple HTTP applications across machines (target groups)
   * Load balancing to multiple applications on the same machine (ex: containers)
-  * Load balancing based on route in URL
-  * Load balancing based on hostname in URL 
+  * Routing to different target group
+     * Routing based on path in URL
+     * Routing based on hostname in URL
+     * Routing based in query string, Headers.
+     * ![image](https://github.com/Varun136/certified-aws-developer-associate-notes/assets/56468790/2af208e3-88c4-4b80-9d0c-53110068f544)
+     * Target groups can be EC2, ECS tasks, Lambda functions, IP adress, can route to multiple target groups.
+     * ![image](https://github.com/Varun136/certified-aws-developer-associate-notes/assets/56468790/d3620635-eec3-4c07-809b-57c3eb6e201b)
 * Basically, they’re awesome for micro services & container-based application (example: Docker & Amazon ECS) 
 * Has a port mapping feature to redirect to a dynamic port 
 * In comparison, we would need to create one Classic Load Balancer per application before.That was very expensive and inefficient!
